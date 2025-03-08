@@ -17,6 +17,8 @@
     "@vdegenne/material-color-helpers": "^1.11.0",
     "@vdegenne/mini-rest": "^0.1.5",
     "@vdegenne/rollup-plugin-minify-html": "^1.0.6",
+    "@vite-pwa/assets-generator": "^0.2.6",
+    "asian-regexps": "^5.1.0",
     "custom-element-decorator": "^0.6.0",
     "html-vision": "^0.1.5",
     "lit": "^3.2.1",
@@ -32,19 +34,22 @@
     "typescript": "^5.8.2",
     "vite": "^6.2.1",
     "vite-plugin-mdicon2svg": "^0.1.0",
+    "vite-plugin-pwa": "^0.21.1",
     "vscode-ui-connector": "^0.2.4",
     "wireit": "^0.14.11"
   },
   "scripts": {
     "dev": "wireit",
-    "build": "wireit"
+    "build": "wireit",
+    "pwa-assets": "wireit"
   },
   "wireit": {
     "dev": {
       "service": true,
       "command": "vite --host",
       "dependencies": [
-        "vuc"
+        "vuc",
+        "pwa-assets"
       ]
     },
     "build": {
@@ -55,13 +60,30 @@
         "./index.html",
         "./public"
       ],
-      "output": []
+      "output": [],
+      "dependencies": [
+        "pwa-assets"
+      ]
     },
     "vuc": {
       "service": true,
       "command": "vuc",
       "files": [
         "./.vuc.json"
+      ]
+    },
+    "pwa-assets": {
+      "command": "pwa-assets-generator --preset minimal-2023 --html.preset 2023 public/logo.svg",
+      "files": [
+        "public/logo.svg"
+      ],
+      "output": [
+        "public/pwa-64x64.png",
+        "public/pwa-192x192.png",
+        "public/pwa-512x512.png",
+        "public/maskable-icon-512x512.png",
+        "public/apple-touch-icon-180x180.png",
+        "public/favicon.ico"
       ]
     }
   }

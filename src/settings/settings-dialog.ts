@@ -5,11 +5,12 @@ import {html, LitElement} from 'lit';
 import {withStyles} from 'lit-with-styles';
 import {query, state} from 'lit/decorators.js';
 import {FormBuilder} from '../forms/FormBuilder.js';
+import '../material/dialog-patch.js';
 import {store} from '../store.js';
 import {themeStore} from '../styles/styles.js';
 import {renderThemeElements} from '../styles/theme-elements.js';
 import styles from './settings-dialog.css?inline';
-import '../material/dialog-patch.js';
+import {SVG_GITHUB} from '../assets/assets.js';
 
 let F = new FormBuilder(store);
 
@@ -40,8 +41,9 @@ class SettingsDialog extends LitElement {
 					id="form"
 					class="flex flex-col gap-9"
 				>
-					<md-list class="p-0" style="--forms-switch-padding:initial">
+					<md-list class="p-0 mt-6" style="--forms-switch-padding:initial">
 						<!-- put the switches here -->
+						${F.SLIDER('Speed', 'speedFactor')}
 					</md-list>
 
 					<div class="mb-5">
@@ -50,7 +52,15 @@ class SettingsDialog extends LitElement {
 					</div>
 				</form>
 
-				<div slot="actions">
+				<div slot="actions" class="justify-bteween">
+					<md-filled-tonal-button
+						href="https://github.com/vdegenne/words-aquarium"
+						target="_blank"
+					>
+						<md-icon slot="icon">${SVG_GITHUB}</md-icon>
+						Source
+					</md-filled-tonal-button>
+					<div class="flex-1"></div>
 					<md-text-button form="form" autofocus>Close</md-text-button>
 				</div>
 			</md-dialog>
