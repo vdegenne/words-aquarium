@@ -64,7 +64,7 @@ export function getElementsTree(node: Element): Promise<Element[]> {
 }
 export async function getElementInTree(
 	from: Element,
-	condition: (element: Element) => boolean
+	condition: (element: Element) => boolean,
 ): Promise<Element | undefined> {
 	for (const element of await getElementsTree(from)) {
 		if (condition(element)) {
@@ -89,6 +89,11 @@ export async function generateHash(input: string): Promise<string> {
 	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
 	return hashArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+export function random(min: number, max: number, decimal = 0): number {
+	const random = Math.random() * (max - min) + min;
+	return parseFloat(random.toFixed(decimal));
 }
 
 export function chatGPTOpen(question: string) {
