@@ -43,7 +43,7 @@ class SettingsDialog extends LitElement {
 				>
 					<md-list class="p-0 mt-6" style="--forms-switch-padding:initial">
 						<!-- put the switches here -->
-						${F.SLIDER('Speed', 'speedFactor')}
+						${F.SLIDER('Speed', 'speedFactor', {min: 1, max: 20})}
 					</md-list>
 
 					<div class="mb-5">

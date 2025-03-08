@@ -27,7 +27,7 @@ export class WordFish extends LitElement {
 		this.value = value;
 		this.style.left = '0';
 		this.style.top = '0';
-		this.style.fontSize = '2.75rem';
+		this.style.fontSize = '2rem';
 		if (hasSomeJapanese(value)) {
 			this.setAttribute('jp', '');
 		}
@@ -70,7 +70,7 @@ export class WordFish extends LitElement {
 	}
 
 	newRandomTrajectory() {
-		this.#trajectory = [random(-1, 1, 2), random(-1, 1, 2)];
+		this.#trajectory = [random(-0.3, 0.3, 3), random(-0.3, 0.3, 3)];
 	}
 	freeze() {
 		this.#trajectory = [0, 0];

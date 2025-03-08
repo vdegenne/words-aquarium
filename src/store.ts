@@ -5,7 +5,7 @@ import {WordFish} from './word-fish.js';
 @saveToLocalStorage('words-aquarium:store')
 export class AppStore extends ReactiveController {
 	@state() words: string[] = [];
-	@state() speedFactor = 1;
+	@state() speedFactor = 2;
 
 	protected firstUpdated() {
 		const hash = decodeURIComponent(window.location.hash.slice(1));
